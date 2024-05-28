@@ -137,7 +137,7 @@ function showModal(category) {
     modal.style.display = "block";
     saveButton.onclick = function() {
         const password = document.getElementById("password").value;
-        if (password === "your_password") { // Replace 'your_password' with the actual password you want to use
+        if (password === "papaman") { // Replace 'your_password' with the actual password you want to use
             saveRow(category);
             modal.style.display = "none";
         } else {
