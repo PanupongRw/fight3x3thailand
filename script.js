@@ -103,42 +103,28 @@ function renderTable(data) {
             const editButton = document.createElement("button");
             editButton.textContent = "Edit";
             editButton.className = "editButton";
-            editButton.onclick = () => editRow(row, game.category);
+            editButton.onclick = () => showModal('edit', game.id, row);
             cellActions.appendChild(editButton);
 
             const deleteButton = document.createElement("button");
             deleteButton.textContent = "Delete";
             deleteButton.className = "deleteButton";
-            deleteButton.onclick = () => deleteRow(game.id);
+            deleteButton.onclick = () => showModal('delete', game.id);
             cellActions.appendChild(deleteButton);
         });
     });
 }
 
-function editRow(row, category) {
-    currentRow = row;
-    for (let i = 1; i <= 5; i++) {
-        const cell = row.cells[i];
-        const input = document.createElement("input");
-        input.type = "text";
-        input.value = cell.textContent;
-        cell.textContent = '';
-        cell.appendChild(input);
-    }
-    const saveButton = document.createElement("button");
-    saveButton.textContent = "Save";
-    saveButton.className = "saveButton";
-    saveButton.onclick = () => showModal(category);
-    row.cells[6].textContent = '';
-    row.cells[6].appendChild(saveButton);
-}
-
-function showModal(category) {
+function showModal(action, matchId, row = null) {
     modal.style.display = "block";
     saveButton.onclick = function() {
         const password = document.getElementById("password").value;
-        if (password === "papaman") { // Replace 'your_password' with the actual password you want to use
-            saveRow(category);
+        if (password === "papaman") { // Replace 'papaman' with the actual password you want to use
+            if (action === 'edit') {
+                editRow(row, matchId);
+            } else if (action === 'delete') {
+                deleteRow(matchId);
+            }
             modal.style.display = "none";
         } else {
             alert("Incorrect password");
@@ -156,7 +142,25 @@ window.onclick = function(event) {
     }
 }
 
-function saveRow(category) {
+function editRow(row, matchId) {
+    currentRow = row;
+    for (let i = 1; i <= 5; i++) {
+        const cell = row.cells[i];
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = cell.textContent;
+        cell.textContent = '';
+        cell.appendChild(input);
+    }
+    const saveButton = document.createElement("button");
+    saveButton.textContent = "Save";
+    saveButton.className = "saveButton";
+    saveButton.onclick = () => saveRow(matchId);
+    row.cells[6].textContent = '';
+    row.cells[6].appendChild(saveButton);
+}
+
+function saveRow(matchId) {
     const updatedMatch = {};
     for (let i = 1; i <= 5; i++) {
         const cell = currentRow.cells[i];
@@ -164,7 +168,6 @@ function saveRow(category) {
         updatedMatch[i === 1 ? 'time' : i === 2 ? 'homeTeam' : i === 3 ? 'awayTeam' : i === 4 ? 'stage' : 'result'] = input.value;
         cell.textContent = input.value;
     }
-    const matchId = scheduleData.find(match => match.category === category && match.number === parseInt(currentRow.cells[0].textContent)).id;
     updateMatch(matchId, updatedMatch);
 }
 
