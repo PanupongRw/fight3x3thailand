@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball Schedule</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Basketball Logo" class="logo">
+            <h1>Basketball Schedule</h1>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for teams...">
+        </div>
+        <div id="categoryTables">
+            <!-- Category tables will be inserted here by JavaScript -->
+        </div>
+        <div class="add-match-container">
+            <select id="categorySelect">
+                <option value="Category 1">Category 1</option>
+                <option value="Category 2">Category 2</option>
+                <option value="Category 3">Category 3</option>
+                <option value="Category 4">Category 4</option>
+                <option value="Category 5">Category 5</option>
+                <option value="Category 6">Category 6</option>
+            </select>
+            <button id="addMatchButton" class="addButton">Add Match</button>
+        </div>
+        <div id="passwordModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Enter Password to Save</h2>
+                <input type="password" id="password" placeholder="Password">
+                <button id="saveButton">Save</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
