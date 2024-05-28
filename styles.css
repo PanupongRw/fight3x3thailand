@@ -48,7 +48,7 @@ h1 {
 .search-container input {
     width: 100%;
     max-width: 300px;
-    padding: 8px;
+    padding: 10px;
     font-size: 16px;
     border-radius: 4px;
     border: 1px solid #333;
@@ -63,9 +63,13 @@ h1 {
 
 .add-match-container select,
 .add-match-container button {
-    padding: 8px 12px;
-    font-size: 14px;
+    padding: 10px 15px;
+    font-size: 16px;
     margin: 5px;
+    border-radius: 4px;
+    border: 1px solid #333;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
 }
 
 table {
@@ -96,30 +100,26 @@ tr:hover {
 }
 
 button {
-    padding: 8px 12px;
-    font-size: 14px;
+    padding: 10px 15px;
+    font-size: 16px;
     cursor: pointer;
     border: none;
     border-radius: 4px;
     margin: 5px;
     color: #ffffff;
+    background-color: #007bff;
 }
 
-.editButton {
+button.editButton {
     background-color: #ffc107;
 }
 
-.saveButton {
+button.saveButton {
     background-color: #28a745;
 }
 
-.deleteButton {
+button.deleteButton {
     background-color: #dc3545;
-}
-
-.addButton {
-    background-color: #007bff;
-    width: 100%;
 }
 
 .modal {
@@ -159,7 +159,25 @@ button {
     cursor: pointer;
 }
 
+/* Mobile Styles */
 @media (max-width: 600px) {
+    .container {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .search-container input,
+    .add-match-container select,
+    .add-match-container button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+    }
+
     table, th, td {
         display: block;
         width: 100%;
@@ -185,5 +203,9 @@ button {
 
     th:last-child, td:last-child {
         border-bottom: none;
+    }
+
+    button {
+        width: 100%;
     }
 }
